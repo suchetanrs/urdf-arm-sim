@@ -1,0 +1,189 @@
+<?xml version="1.0" ?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="two_link_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="base_link">
+    <inertial>
+      <origin 
+        xyz="0.0010593 1.3124E-18 0.033709" 
+        rpy="0 0 0" />
+      <mass
+        value="33.447" />
+      <inertia
+        ixx="0.064903"
+        ixy="-1.6107E-19"
+        ixz="-0.0023213"
+        iyy="0.065011"
+        iyz="-8.8908E-18"
+        izz="0.05032" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link_1">
+    <inertial>
+      <origin
+        xyz="-0.02361 0.057619 0.11093"
+        rpy="0 0 0" />
+      <mass
+        value="0.82473" />
+      <inertia
+        ixx="0.0054808"
+        ixy="-8.8534E-10"
+        ixz="4.5987E-10"
+        iyy="0.0043742"
+        iyz="-0.0021366"
+        izz="0.0013707" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/Link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/Link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_1"
+    type="revolute">
+    <origin
+      xyz="0.0249499999999999 0 0.095"
+      rpy="1.45659011193773 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link_1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="0"
+      effort="100"
+      velocity="0.3" />
+  </joint>
+  <link
+    name="Link_2">
+    <inertial>
+      <origin
+        xyz="0.024112 -2.5535E-15 0.10532"
+        rpy="0 0 0" />
+      <mass
+        value="0.70847" />
+      <inertia
+        ixx="0.0034993"
+        ixy="-1.3553E-20"
+        ixz="-6.5034E-05"
+        iyy="0.0035013"
+        iyz="4.8789E-19"
+        izz="0.00022333" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/Link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://two_link_arm/meshes/Link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0.115238408802577 0.221856054992086"
+      rpy="0.616796801342247 0 0" />
+    <parent
+      link="Link_1" />
+    <child
+      link="Link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="0"
+      effort="100"
+      velocity="0.3" />
+  </joint>
+
+
+  <transmission name="trans_Joint_1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Joint_1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_Joint_1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="trans_Joint_2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Joint_2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_Joint_2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+</robot>
