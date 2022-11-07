@@ -1,0 +1,7 @@
+-> effortPositionController package was not installed.
+-> install using command <khud figure out karo>
+
+-> No problems with namespace - let it be as it is in the video
+
+-> ADD TRANSMISSION ONLY IN THE END.
+-> KEEP JOINTS IN REVOLUTE
